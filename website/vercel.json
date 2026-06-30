@@ -5,18 +5,19 @@
   "outputDirectory": "dist",
   "installCommand": "npm install",
   "framework": "vite",
-  "redirects": [
+  "routes": [
     {
-      "source": "/:path*",
+      "src": "/(.*)",
       "has": [
         {
           "type": "host",
           "value": "luis-eduardo-de-pombo-puerta.vercel.app"
         }
       ],
-      "destination": "https://luisdepombo.vercel.app/:path*",
-      "statusCode": 308
-    }
-  ],
-  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+      "dest": "https://luisdepombo.vercel.app/$1",
+      "status": 308
+    },
+    { "handle": "filesystem" },
+    { "src": "/(.*)", "dest": "/index.html" }
+  ]
 }
